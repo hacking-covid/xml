@@ -1,13 +1,15 @@
 xquery version "3.1";
 
 
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="labs.xsl"?>
 
+
+declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+declare option output:method 'xml';
 
 
 for $doc in db:open("covid")
 
-return 
-
-$doc
+return (
+	<?xml-stylesheet type="text/xsl" href="labs.xsl"?>,
+	$doc/node()
+	)
